@@ -7,9 +7,10 @@ interface Expense {
 
 interface Props {
   expenses: Expense[];
+  onDelete: (id: number) => void;
 }
 
-const ExpenseList = ({ expenses }: Props) => {
+const ExpenseList = ({ expenses, onDelete }: Props) => {
   return (
     <div className="mt-8 flow-root">
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -57,7 +58,10 @@ const ExpenseList = ({ expenses }: Props) => {
                       {exp.category}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <button className="px-3 py-1 bg-red-400 text-white rounded">
+                      <button
+                        className="px-3 py-1 bg-red-400 text-white rounded"
+                        onClick={() => onDelete(exp.id)}
+                      >
                         Delete
                       </button>
                     </td>

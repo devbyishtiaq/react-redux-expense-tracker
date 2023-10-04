@@ -31,7 +31,10 @@ const App = () => {
           />
         </div>
         <div>
-          <ExpenseList expenses={expenses} />
+          <ExpenseList
+            expenses={expenses}
+            onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
+          />
         </div>
       </div>
     </div>
