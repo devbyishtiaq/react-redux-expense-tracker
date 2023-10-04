@@ -1,4 +1,12 @@
+import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
+
+const categories = [
+  { id: 1, name: "All Categories" },
+  { id: 2, name: "Utilities" },
+  { id: 3, name: "Groceries" },
+  { id: 4, name: "Entertainment" },
+];
 
 const App = () => {
   return (
@@ -7,6 +15,9 @@ const App = () => {
         Expense Tracker
       </h1>
       <div className="grid grid-cols-2 gap-8 mt-16">
+        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg p-4 self-start">
+          <ExpenseForm categories={categories} />
+        </div>
         <div>
           <ExpenseList expenses={expenses} />
         </div>
