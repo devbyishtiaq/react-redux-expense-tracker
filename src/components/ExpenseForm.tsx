@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch } from "react-redux";
+import { addExpense } from "../redux/expenseSlice";
 interface Category {
   id: number;
   name: string;
@@ -8,7 +10,6 @@ interface Category {
 
 interface Props {
   categories: Category[];
-  onSubmit: (data: ExpenseFormData) => void;
 }
 
 const schema = z.object({
@@ -28,12 +29,24 @@ const schema = z.object({
 
 type ExpenseFormData = z.infer<typeof schema>;
 
-const ExpenseForm = ({ categories, onSubmit }: Props) => {
+const ExpenseForm = ({ categories }: Props) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ExpenseFormData>({ resolver: zodResolver(schema) });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: ExpenseFormData) => {
+    dispatch(
+      addExpense({
+        description: data.description,
+        amount: data.amount,
+        category: data.category,
+      })
+    );
+  };
 
   return (
     <div>

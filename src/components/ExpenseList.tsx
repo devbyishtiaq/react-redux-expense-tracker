@@ -1,16 +1,9 @@
-interface Expense {
-  id: number;
-  description: string;
-  amount: number;
-  category: string;
-}
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
-interface Props {
-  expenses: Expense[];
-  onDelete: (id: number) => void;
-}
+const ExpenseList = () => {
+  const expenses = useSelector((state: RootState) => state.expenses);
 
-const ExpenseList = ({ expenses, onDelete }: Props) => {
   return (
     <div className="mt-8 flow-root">
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -58,10 +51,7 @@ const ExpenseList = ({ expenses, onDelete }: Props) => {
                       {exp.category}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <button
-                        className="px-3 py-1 bg-red-400 text-white rounded"
-                        onClick={() => onDelete(exp.id)}
-                      >
+                      <button className="px-3 py-1 bg-red-400 text-white rounded">
                         Delete
                       </button>
                     </td>

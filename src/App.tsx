@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 
@@ -10,12 +9,6 @@ const categories = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState([
-    { id: 1, description: "hello world", amount: 100, category: "Utilities" },
-    { id: 2, description: "hello world", amount: 100, category: "Utilities" },
-    { id: 3, description: "hello world", amount: 100, category: "Utilities" },
-  ]);
-
   return (
     <div className="container mx-auto min-h-screen overflow-hidden p-8">
       <h1 className="text-3xl font-bold tracking-wider text-center">
@@ -23,18 +16,10 @@ const App = () => {
       </h1>
       <div className="grid grid-cols-2 gap-8 mt-16">
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg p-4 self-start">
-          <ExpenseForm
-            categories={categories}
-            onSubmit={(data) =>
-              setExpenses([...expenses, { ...data, id: expenses.length + 1 }])
-            }
-          />
+          <ExpenseForm categories={categories} />
         </div>
         <div>
-          <ExpenseList
-            expenses={expenses}
-            onDelete={(id) => setExpenses(expenses.filter((e) => e.id !== id))}
-          />
+          <ExpenseList />
         </div>
       </div>
     </div>
