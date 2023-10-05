@@ -4,3 +4,8 @@ export interface Expense {
   amount: number;
   category: string;
 }
+
+export interface Category {
+  id: number;
+  name: string;
+}

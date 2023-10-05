@@ -1,12 +1,7 @@
+import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
-
-const categories = [
-  { id: 1, name: "All Categories" },
-  { id: 2, name: "Utilities" },
-  { id: 3, name: "Groceries" },
-  { id: 4, name: "Entertainment" },
-];
+import { categories } from "./constants";
 
 const App = () => {
   return (
@@ -19,6 +14,7 @@ const App = () => {
           <ExpenseForm categories={categories} />
         </div>
         <div>
+          <ExpenseFilter />
           <ExpenseList />
         </div>
       </div>

@@ -5,10 +5,25 @@ import { deleteExpense } from "../redux/expenseSlice";
 const ExpenseList = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state: RootState) => state.expenses);
+  const selectedCategory = useSelector(
+    (state: RootState) => state.selectedCategory
+  );
 
-  const handleDelete = (id: number) => {
-    dispatch(deleteExpense(id));
+  const filteredExpenses =
+    selectedCategory.name === "All Categories"
+      ? expenses
+      : expenses.filter((exp) => exp.category === selectedCategory.name);
+
+  const handleDelete = (expId: number) => {
+    dispatch(deleteExpense(expId));
   };
+
+  if (filteredExpenses.length === 0)
+    return (
+      <div className="mt-2 text-red-500">
+        No record found for this category!
+      </div>
+    );
 
   return (
     <div className="mt-8 flow-root">
@@ -45,7 +60,7 @@ const ExpenseList = () => {
                 </tr>
               </thead>
               <tbody className="bg-white">
-                {expenses.map((exp) => (
+                {filteredExpenses.map((exp) => (
                   <tr key={exp.id} className="even:bg-gray-50">
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
                       {exp.description}

@@ -6,3 +6,10 @@ export const expenses = [
     category: "Utilities",
   },
 ];
+
+export const categories = [
+  { id: 1, name: "All Categories" },
+  { id: 2, name: "Utilities" },
+  { id: 3, name: "Groceries" },
+  { id: 4, name: "Entertainment" },
+];

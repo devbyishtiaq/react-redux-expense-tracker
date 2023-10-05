@@ -3,10 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch } from "react-redux";
 import { addExpense } from "../redux/expenseSlice";
-interface Category {
-  id: number;
-  name: string;
-}
+import { Category } from "../../common.types";
 
 interface Props {
   categories: Category[];
