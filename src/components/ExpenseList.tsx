@@ -1,8 +1,14 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
+import { deleteExpense } from "../redux/expenseSlice";
 
 const ExpenseList = () => {
+  const dispatch = useDispatch();
   const expenses = useSelector((state: RootState) => state.expenses);
+
+  const handleDelete = (id: number) => {
+    dispatch(deleteExpense(id));
+  };
 
   return (
     <div className="mt-8 flow-root">
@@ -51,7 +57,10 @@ const ExpenseList = () => {
                       {exp.category}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      <button className="px-3 py-1 bg-red-400 text-white rounded">
+                      <button
+                        className="px-3 py-1 bg-red-400 text-white rounded"
+                        onClick={() => handleDelete(exp.id)}
+                      >
                         Delete
                       </button>
                     </td>
